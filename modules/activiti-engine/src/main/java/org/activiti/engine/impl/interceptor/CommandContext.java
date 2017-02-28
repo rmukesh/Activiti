@@ -24,6 +24,7 @@ import org.activiti.engine.impl.history.HistoryManager;
 import org.activiti.engine.impl.jobexecutor.FailedJobCommandFactory;
 import org.activiti.engine.impl.persistence.cache.EntityCache;
 import org.activiti.engine.impl.persistence.entity.*;
+import org.activiti.engine.impl.persistence.entity.data.TableDataManager;
 import org.activiti.engine.impl.runtime.ActivitiAgenda;
 import org.activiti.engine.logging.LogMDC;
 import org.slf4j.Logger;

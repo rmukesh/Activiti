@@ -11,7 +11,7 @@
  * limitations under the License.
  */
 
-package org.activiti.engine.impl.persistence.entity;
+package org.activiti.engine.impl.persistence.entity.data.impl;
 
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
@@ -37,6 +37,44 @@ import org.activiti.engine.impl.TablePageQueryImpl;
 import org.activiti.engine.impl.cfg.ProcessEngineConfigurationImpl;
 import org.activiti.engine.impl.db.DbSqlSession;
 import org.activiti.engine.impl.persistence.AbstractManager;
+import org.activiti.engine.impl.persistence.entity.AttachmentEntity;
+import org.activiti.engine.impl.persistence.entity.ByteArrayEntity;
+import org.activiti.engine.impl.persistence.entity.CommentEntity;
+import org.activiti.engine.impl.persistence.entity.CompensateEventSubscriptionEntity;
+import org.activiti.engine.impl.persistence.entity.DeadLetterJobEntity;
+import org.activiti.engine.impl.persistence.entity.DeploymentEntity;
+import org.activiti.engine.impl.persistence.entity.Entity;
+import org.activiti.engine.impl.persistence.entity.EventLogEntryEntity;
+import org.activiti.engine.impl.persistence.entity.EventSubscriptionEntity;
+import org.activiti.engine.impl.persistence.entity.ExecutionEntity;
+import org.activiti.engine.impl.persistence.entity.GroupEntity;
+import org.activiti.engine.impl.persistence.entity.HistoricActivityInstanceEntity;
+import org.activiti.engine.impl.persistence.entity.HistoricDetailAssignmentEntity;
+import org.activiti.engine.impl.persistence.entity.HistoricDetailEntity;
+import org.activiti.engine.impl.persistence.entity.HistoricDetailTransitionInstanceEntity;
+import org.activiti.engine.impl.persistence.entity.HistoricDetailVariableInstanceUpdateEntity;
+import org.activiti.engine.impl.persistence.entity.HistoricFormPropertyEntity;
+import org.activiti.engine.impl.persistence.entity.HistoricIdentityLinkEntity;
+import org.activiti.engine.impl.persistence.entity.HistoricProcessInstanceEntity;
+import org.activiti.engine.impl.persistence.entity.HistoricTaskInstanceEntity;
+import org.activiti.engine.impl.persistence.entity.HistoricVariableInstanceEntity;
+import org.activiti.engine.impl.persistence.entity.IdentityInfoEntity;
+import org.activiti.engine.impl.persistence.entity.IdentityLinkEntity;
+import org.activiti.engine.impl.persistence.entity.JobEntity;
+import org.activiti.engine.impl.persistence.entity.MembershipEntity;
+import org.activiti.engine.impl.persistence.entity.MessageEventSubscriptionEntity;
+import org.activiti.engine.impl.persistence.entity.ModelEntity;
+import org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity;
+import org.activiti.engine.impl.persistence.entity.ProcessDefinitionInfoEntity;
+import org.activiti.engine.impl.persistence.entity.PropertyEntity;
+import org.activiti.engine.impl.persistence.entity.ResourceEntity;
+import org.activiti.engine.impl.persistence.entity.SignalEventSubscriptionEntity;
+import org.activiti.engine.impl.persistence.entity.SuspendedJobEntity;
+import org.activiti.engine.impl.persistence.entity.TaskEntity;
+import org.activiti.engine.impl.persistence.entity.TimerJobEntity;
+import org.activiti.engine.impl.persistence.entity.UserEntity;
+import org.activiti.engine.impl.persistence.entity.VariableInstanceEntity;
+import org.activiti.engine.impl.persistence.entity.data.TableDataManager;
 import org.activiti.engine.management.TableMetaData;
 import org.activiti.engine.management.TablePage;
 import org.activiti.engine.repository.Deployment;
@@ -54,13 +92,13 @@ import org.slf4j.LoggerFactory;
 /**
  * @author Tom Baeyens
  */
-public class TableDataManagerImpl extends AbstractManager implements TableDataManager {
+public class MybatisTableDataManagerImpl extends AbstractManager implements TableDataManager {
 
-  public TableDataManagerImpl(ProcessEngineConfigurationImpl processEngineConfiguration) {
+  public MybatisTableDataManagerImpl(ProcessEngineConfigurationImpl processEngineConfiguration) {
     super(processEngineConfiguration);
   }
 
-  private static Logger log = LoggerFactory.getLogger(TableDataManagerImpl.class);
+  private static Logger log = LoggerFactory.getLogger(MybatisTableDataManagerImpl.class);
 
   public static Map<Class<?>, String> apiTypeToTableNameMap = new HashMap<Class<?>, String>();
   public static Map<Class<? extends Entity>, String> entityToTableNameMap = new HashMap<Class<? extends Entity>, String>();

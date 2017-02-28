@@ -1110,6 +1110,9 @@ public abstract class ProcessEngineConfigurationImpl extends ProcessEngineConfig
   // Data managers ///////////////////////////////////////////////////////////
 
   public void initDataManagers() {
+    if (tableDataManager == null) {
+      tableDataManager = new MybatisTableDataManagerImpl(this);
+    }
     if (attachmentDataManager == null) {
       attachmentDataManager = new MybatisAttachmentDataManager(this);
     }
@@ -1279,9 +1282,6 @@ public abstract class ProcessEngineConfigurationImpl extends ProcessEngineConfig
     }
     if (resourceEntityManager == null) {
       resourceEntityManager = new ResourceEntityManagerImpl(this, resourceDataManager);
-    }
-    if (tableDataManager == null) {
-      tableDataManager = new TableDataManagerImpl(this);
     }
     if (taskEntityManager == null) {
       taskEntityManager = new TaskEntityManagerImpl(this, taskDataManager);
